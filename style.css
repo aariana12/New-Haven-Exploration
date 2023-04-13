@@ -11,14 +11,6 @@ html, body {
     grid-template-rows: 50px 1fr 200px;
   }
 
-  #dot {
-    height: 25px;
-    width: 25px;
-    background-color: #6A7885;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
 
   #start-button {
     color: black;
@@ -59,6 +51,38 @@ html, body {
     background-color: #cce8db;
     grid-column: 2/3;
     grid-row: 2/3;
+  }
+  
+  #restaurant-button {
+    height: 25px;
+    width: 25px;
+    background-color: #6A7885;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #hobbies-button {
+    height: 25px;
+    width: 25px;
+    background-color: #6A7885;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #study-button {
+    height: 25px;
+    width: 25px;
+    background-color: #6A7885;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #explore-button {
+    height: 25px;
+    width: 25px;
+    background-color: #6A7885;
+    border-radius: 50%;
+    display: inline-block;
   }
 
   .hands {
