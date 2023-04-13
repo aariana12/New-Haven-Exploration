@@ -161,3 +161,16 @@ html, body {
   .active-down {
     border-top: 15px solid #c1f80a;
   }
+
+  .qr {
+    height: 300px;
+  }
+
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
