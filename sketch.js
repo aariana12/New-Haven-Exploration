@@ -94,7 +94,8 @@ let downArrow = document.getElementById('down-arrow');
 
 let startButton = document.getElementById('start-button');
 startButton.addEventListener("click", () => {
-  window.location.reload();
+  document.location.href = 'prompt.html';
+  
 });
 
 function setup() {
