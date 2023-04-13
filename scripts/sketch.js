@@ -100,28 +100,28 @@ startButton.addEventListener("click", () => {
 
 // button for restaurants
 let startRes = document.getElementById('restaurant-button');
-startButton.addEventListener("click", () => {
+startRes.addEventListener("click", () => {
   document.location.href = 'restaurantmap.html';
   
 });
 
 // button for study places
 let startStudy = document.getElementById('study-button');
-startButton.addEventListener("click", () => {
+startStudy.addEventListener("click", () => {
   document.location.href = 'studymap.html';
   
 });
 
 // button for hobbies
 let startHobbies = document.getElementById('hobbies-button');
-startButton.addEventListener("click", () => {
+startHobbies.addEventListener("click", () => {
   document.location.href = 'hobbiesmap.html';
   
 });
 
 // button for places to explore
 let startExplore = document.getElementById('explore-button');
-startButton.addEventListener("click", () => {
+startExplore.addEventListener("click", () => {
   document.location.href = 'exploremap.html';
   
 });
