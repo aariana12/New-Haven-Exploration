@@ -1,24 +1,13 @@
-var foo; // variable for clearInterval() function
-var seconds = document.getElementById("counter").innerHTML;
-;
+// adapted from https://stackoverflow.com/questions/12498209/redirect-10-second-countdown
 
-function redirect() {
-    document.location.href = './index.html';
-}
-
-function updateSecs() {
-    document.getElementById("counter").innerHTML = seconds;
-    seconds--;
-    if (seconds == -1) {
-        clearInterval(foo);
-        redirect();
+function countdown() {
+    var i = document.getElementById('counter');
+    if (parseInt(i.innerHTML)<=0) {
+        location.href = 'index.html';
+    }
+    if (parseInt(i.innerHTML)!=0) {
+        i.innerHTML = parseInt(i.innerHTML)-1;
     }
 }
 
-function countdownTimer() {
-    foo = setInterval(function () {
-        updateSecs()
-    }, 1000);
-}
-
-countdownTimer();
+setInterval(function(){ countdown(); },1000);
