@@ -1,9 +1,13 @@
-var host = "cpsc484-04.yale.internal:8888";
+
+var host = "localhost:8000";
+
+
 
 // button for restaurants
 const startRes = document.getElementById('restaurant-button');
 startRes.addEventListener("click", () => {
-  document.location.href = 'maps/index.html';
+  window.location.href = '/maps/index.html';
+
   
 });
 
