@@ -38,8 +38,14 @@ home.addEventListener("click", () => {
   
 });
 
+const exit = document.getElementById('exit-button');
+exit.addEventListener("click", () => {
+  document.location.href = 'qr.html';
+  
+});
+
 // group elements together
-const buttons = {startRes, startStudy, startHobbies, startExplore, home};
+const buttons = {startRes, startStudy, startHobbies, startExplore, home, exit};
 
 $(document).ready(function() {
   frames.start();
@@ -116,7 +122,7 @@ const coords = document.getElementById("coords");
 let cursor_x = [];
 let cursor_y = [];
 const buffer_length = 5;
-let hover_counts = { startRes: 0, startStudy: 0, startHobbies: 0, startExplore: 0, home: 0 };
+let hover_counts = { startRes: 0, startStudy: 0, startHobbies: 0, startExplore: 0, home: 0, exit: 0};
 const hover_threshold = 15;
 
 const contains = function (x, y, domrect) {
@@ -145,8 +151,10 @@ var startHobbiesRect = startHobbies.getBoundingClientRect();
 var startExploreRect = startExplore.getBoundingClientRect();
 // Get home button element coordinates
 var homeRect = home.getBoundingClientRect();
+//Get exit button element coordinates
+var exitRect = exit.getBoundingClientRect();
 // Group rectangles into a dictionary
-var rects = { startRes: startResRect, startStudy: startStudyRect, startHobbies: startHobbiesRect, startExplore: startExploreRect, home: homeRect };
+var rects = { startRes: startResRect, startStudy: startStudyRect, startHobbies: startHobbiesRect, startExplore: startExploreRect, home: homeRect, exit: exitRect};
 
 function sendWristCommand(command) {
   if (command === null) {
@@ -188,7 +196,7 @@ function sendWristCommand(command) {
     // // increase font size
     // coords.style.fontSize = "20px";
 
-    hover.innerHTML = `hover: ${hover_counts["startRes"]}, ${hover_counts["startStudy"]}, ${hover_counts["startHobbies"]}, ${hover_counts["startExplore"]}, ${hover_counts["home"]}`;
+    hover.innerHTML = `hover: ${hover_counts["startRes"]}, ${hover_counts["startStudy"]}, ${hover_counts["startHobbies"]}, ${hover_counts["startExplore"]}, ${hover_counts["home"]}, ${hover_counts["exit"]}`;
     // change color
     hover.style.color = "black";
     // increase font size
