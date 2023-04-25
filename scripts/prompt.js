@@ -1,7 +1,4 @@
-
-var host = "localhost:8000";
-
-
+var host = "cpsc484-04.yale.internal:8888";
 
 // button for restaurants
 const startRes = document.getElementById('restaurant-button');
@@ -130,15 +127,13 @@ const contains = function (x, y, domrect) {
          domrect.y <= y && y <= domrect.y + domrect.height;
 }
 
-function color(value, maxLength)
+function color(value)
 {
-    var i = (value * 255 / maxLength);
-    // var r = Math.round(Math.sin(0.024 * i + 0) * 127 + 128);
-    var r = 0;
-    var g = Math.round(Math.sin(0.024 * i + 2) * 127 + 128);
-    // var b = Math.round(Math.sin(0.024 * i + 4) * 127 + 128);
-    var b = 0;
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  // hsl(209, 11%, 47%)
+  var h = 209;
+  var s = 11 + scale(value, 0, hover_threshold, 0, 89);
+  var l = 47;
+  return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
 // Get restaurant button element coordinates
@@ -214,7 +209,7 @@ function sendWristCommand(command) {
       }
 
       // change button color with hover_counts
-      buttons[key].style.backgroundColor = color(hover_counts[key], hover_threshold);
+      buttons[key].style.backgroundColor = color(hover_counts[key]);
     }
   }
 }
