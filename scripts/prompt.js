@@ -1,12 +1,11 @@
-
-var host = "localhost:8000";
+var host = "cpsc484-04.yale.internal:8888";
 
 
 
 // button for restaurants
 const startRes = document.getElementById('restaurant-button');
 startRes.addEventListener("click", () => {
-  window.location.href = '/maps/index.html';
+  window.location.href = 'maps/index.html';
 
   
 });
@@ -14,20 +13,20 @@ startRes.addEventListener("click", () => {
 // button for study places
 const startStudy = document.getElementById('study-button');
 startStudy.addEventListener("click", () => {
-  window.location.href = '/maps_study/index.html';
+  window.location.href = 'maps_study/index.html';
 });
 
 // button for hobbies
 const startHobbies = document.getElementById('hobbies-button');
 startHobbies.addEventListener("click", () => {
-  window.location.href = '/maps_hobbies/index.html';
+  window.location.href = 'maps_hobbies/index.html';
   
 });
 
 // button for places to explore
 const startExplore = document.getElementById('explore-button');
 startExplore.addEventListener("click", () => {
-  window.location.href = "/maps_explore/index.html";
+  window.location.href = "maps_explore/index.html";
 
 });
 

@@ -2,4 +2,4 @@
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */let l;async function a(){const{Map:s}=await google.maps.importLibrary("maps");l=new s(document.getElementById("map"),{center:{lat:41.310726,lng:-72.929916},zoom:15});const n=[[{lat:41.30675,lng:-72.92764},"New Haven's Taste of China"],[{lat:41.3103669,lng:-72.9218941},"Zoi's"]],r=new google.maps.InfoWindow;n.forEach(([i,e],t)=>{const o=new google.maps.Marker({position:i,map:l,title:`${t+1}. ${e}`,label:`${t+1}`,optimized:!1});o.addListener("click",()=>{r.close(),r.setContent(o.getTitle()),r.open(o.getMap(),o)})})}a();
+ */let s;async function a(){const{Map:l}=await google.maps.importLibrary("maps");s=new l(document.getElementById("map"),{center:{lat:41.310726,lng:-72.929916},zoom:14});const n=[[{lat:41.327148,lng:-72.960373},"Mew Haven Cat Cafe"],[{lat:41.324848,lng:-72.910812},"East Rock Park"]],r=new google.maps.InfoWindow;n.forEach(([i,e],t)=>{const o=new google.maps.Marker({position:i,map:s,title:`${t+1}. ${e}`,label:`${t+1}`,optimized:!1});o.addListener("click",()=>{r.close(),r.setContent(o.getTitle()),r.open(o.getMap(),o)})})}a();
