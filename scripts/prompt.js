@@ -1,7 +1,5 @@
 var host = "cpsc484-04.yale.internal:8888";
 
-
-
 // button for restaurants
 const startRes = document.getElementById('restaurant-button');
 startRes.addEventListener("click", () => {
@@ -90,8 +88,8 @@ var frames = {
 
     // var display_x = left_wrist_x;
     // var display_y = left_wrist_y;
-    var display_x = scale(left_wrist_x, -650, 400, 0, 1920);
-    var display_y = scale(left_wrist_y, -100, 900, 0, 1080);
+    var display_x = scale(left_wrist_x, -650, 400, 0, window.innerWidth);
+    var display_y = scale(left_wrist_y, -100, 900, 0, window.innerHeight);
     
 
     return {display_x, display_y};
@@ -129,15 +127,13 @@ const contains = function (x, y, domrect) {
          domrect.y <= y && y <= domrect.y + domrect.height;
 }
 
-function color(value, maxLength)
+function color(value)
 {
-    var i = (value * 255 / maxLength);
-    // var r = Math.round(Math.sin(0.024 * i + 0) * 127 + 128);
-    var r = 0;
-    var g = Math.round(Math.sin(0.024 * i + 2) * 127 + 128);
-    // var b = Math.round(Math.sin(0.024 * i + 4) * 127 + 128);
-    var b = 0;
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  // hsl(209, 11%, 47%)
+  var h = 209;
+  var s = 11 + scale(value, 0, hover_threshold, 0, 89);
+  var l = 47;
+  return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
 // Get restaurant button element coordinates
@@ -184,12 +180,12 @@ function sendWristCommand(command) {
       cursor_y.push(command.display_y);
     }
 
-    // console.log(`left wrist avg: ${mean(cursor_x)}, ${1080-mean(cursor_y)}`);
+    // console.log(`left wrist avg: ${mean(cursor_x)}, ${window.innerHeight-mean(cursor_y)}`);
 
     cursor.style.left = mean(cursor_x) + "px";
-    cursor.style.top = (1080-mean(cursor_y)) + "px";
+    cursor.style.top = (window.innerHeight-mean(cursor_y)) + "px";
 
-    // coords.innerHTML = `(${mean(cursor_x)}, ${1080-mean(cursor_y)})`;
+    // coords.innerHTML = `(${mean(cursor_x)}, ${window.innerHeight-mean(cursor_y)})`;
     // // change color
     // coords.style.color = "white";
     // // increase font size
@@ -202,7 +198,7 @@ function sendWristCommand(command) {
     hover.style.fontSize = "20px";
 
     for (var key in hover_counts) {
-      if (contains(mean(cursor_x), 1080-mean(cursor_y), rects[key])) {
+      if (contains(mean(cursor_x), window.innerHeight-mean(cursor_y), rects[key])) {
         hover_counts[key]++;
         if (hover_counts[key] === hover_threshold) {
           buttons[key].click();
@@ -213,7 +209,7 @@ function sendWristCommand(command) {
       }
 
       // change button color with hover_counts
-      buttons[key].style.backgroundColor = color(hover_counts[key], hover_threshold);
+      buttons[key].style.backgroundColor = color(hover_counts[key]);
     }
   }
 }

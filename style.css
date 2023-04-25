@@ -14,7 +14,7 @@ html, body {
 #start-button {
   color: black;
   font-size: larger;
-  background-color: #8C8D8F;
+  background-color: hsl(220, 1%, 55%);
   border-radius: 25px;
   border-style: solid;
   border-color: black;
@@ -44,25 +44,23 @@ html, body {
 
 #explore-button {
   border-radius: 50%;
-  background-color: #6a7885;
+  background-color: hsl(209, 11%, 47%);
   height: 130px;
   width: 130px;
 }
 
 #home-button {
-  border-radius: 50%;
-  background-color: #6a7885;
-  height: 50px;
-  width: 50px;
+  background-color: hsl(209, 11%, 47%);
+  height: 75px;
+  width: 75px;
   position: fixed;
   left:    25px;
 }
-
+  
 #exit-button {
-  border-radius: 50%;
-  background-color: #6a7885;
-  height: 50px;
-  width: 50px;
+  background-color: hsl(209, 11%, 47%);
+  height: 75px;
+  width: 75px;
   position: fixed;
   right:    25px;
 }
@@ -70,7 +68,7 @@ html, body {
 #canvas-container {
   background-color: #8C8D8F;
   padding-top: 25px;
-  width: 625px;
+  width: 550px;
   height: 500px;
   justify-content: center;
   align-items: center;
@@ -78,7 +76,7 @@ html, body {
   text-align: center;
   /* margin-top: 2rem; */
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 #scroll {
@@ -120,8 +118,9 @@ body {
 .container {
   height: 100vh;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items:center;
   flex-direction: column;
   max-width: 100% !important;
   max-height: 100% !important;
@@ -147,7 +146,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 .legend-item {
   display: flex;
@@ -165,10 +164,6 @@ body {
   font-weight: bold;
 }
 
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
  #map {
   height: 100%;
 }
@@ -181,4 +176,12 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#event-container {
+  width: 250px;
+  height: 650px;
+  background-color: #8C8D8F;
+  border-radius: 20px;
+  overflow: hidden;
 }

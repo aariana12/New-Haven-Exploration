@@ -3,51 +3,59 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Sleep Screen</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script> -->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   </head>
   <body>
     <div class="container">
-      <img src="icons/zoomin.svg" alt="icon" id="cursor">
+      <img src="assets/icons/cursor.svg" alt="icon" id="cursor">
+      <div id="event-container">
+        <marquee behavior="scroll" direction="down" scrollamount="2">
+            <img src="assets/eventpics/event1.png">
+            <img src="assets/eventpics/event2.png">
+            <img src="assets/eventpics/event3.png">
+            <img src="assets/eventpics/event4.png">
+            <img src="assets/eventpics/event5.png">
+            <img src="assets/eventpics/event6.png">
+            <img src="assets/eventpics/event7.png">
+          </marquee>
+      </div>
       <div id="canvas-container">
-        <button id="start-button">Start Exploring!</button>
         <div>Start the program by hovering your hand for 3 seconds over the start button!</div>
         <br>
         <p id="coords"></p>
         <p id="hover"></p>
         <br>
-        <div>Utilize our icon legends below to get familiar with how to work the map</div>
+        <button id="start-button">Start Exploring!</button>
+        <br><br><br><br><br><br>
+        <div>Use these icons to navigate the program</div>
         <div id="icon-legends">
             <div class="legend-item">
-                <img src="icons/zoomin.svg" alt="icon">
-                <p>Zoom in</p>
+                <img src="assets/icons/homepage.svg" alt="icon">
+                <p>Main Menu</p>
             </div>
             <div class="legend-item">
-                <img src="icons/zoomout.svg" alt="icon">
-                <p>Zoom out</p>
-            </div>
-            <div class="legend-item">
-                <img src="icons/up.svg" alt="icon">
-                <p>Move up</p>
-            </div>
-            <div class="legend-item">
-                <img src="icons/down.svg" alt="icon">
-                <p>Move down</p>
-            </div>
-            <div class="legend-item">
-                <img src="icons/left.svg" alt="icon">
-                <p>Move left</p>
-            </div>
-            <div class="legend-item">
-                <img src="icons/right.svg" alt="icon">
-                <p>Move right</p>
+                <img src="assets/icons/logout.svg" alt="icon">
+                <p>Exit Program</p>
             </div>
           </div>
+      </div>
+      <div id="event-container">
+        <marquee behavior="scroll" direction="up" scrollamount="2">
+            <img src="assets/eventpics/explore1.jpg">
+            <img src="assets/eventpics/explore2.jpg">
+            <img src="assets/eventpics/explore3.jpg">
+            <img src="assets/eventpics/explore4.jpg">
+            <img src="assets/eventpics/explore5.jpg">
+            <img src="assets/eventpics/explore6.jpg">
+            <img src="assets/eventpics/explore7.jpg">
+          </marquee>
       </div>
       <!-- <div id="kinect-window">
         <img class="twod" height="300px"/>
