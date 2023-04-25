@@ -2,4 +2,4 @@
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */let s;async function a(){const{Map:l}=await google.maps.importLibrary("maps");s=new l(document.getElementById("map"),{center:{lat:41.310726,lng:-72.929916},zoom:15});const n=[[{lat:41.323872,lng:-72.928337},"City Climb Gym"],[{lat:41.30317,lng:-72.92406},"Rumberos - Salsa & Tango"]],r=new google.maps.InfoWindow;n.forEach(([i,e],t)=>{const o=new google.maps.Marker({position:i,map:s,title:`${t+1}. ${e}`,label:`${t+1}`,optimized:!1});o.addListener("click",()=>{r.close(),r.setContent(o.getTitle()),r.open(o.getMap(),o)})})}a();
+ */let s;async function a(){const{Map:l}=await google.maps.importLibrary("maps");s=new l(document.getElementById("map"),{center:{lat:41.310726,lng:-72.929916},zoom:14.6});const n=[[{lat:41.323872,lng:-72.928337},"City Climb Gym"],[{lat:41.303169,lng:-72.924057},"Rumberos - Salsa & Tango"]],r=new google.maps.InfoWindow;n.forEach(([i,e],t)=>{const o=new google.maps.Marker({position:i,map:s,title:`${t+1}. ${e}`,label:`${t+1}`,optimized:!1});o.addListener("click",()=>{r.close(),r.setContent(o.getTitle()),r.open(o.getMap(),o)})})}a();
