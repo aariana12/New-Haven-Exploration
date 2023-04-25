@@ -3,7 +3,7 @@ var host = "localhost:8000";
 // button for restaurants
 let startRes = document.getElementById('restaurant-button');
 startRes.addEventListener("click", () => {
-  window.location.href = '/maps/index.html';
+  document.location.href = 'maps/index.html';
   
 });
 
