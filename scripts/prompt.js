@@ -120,6 +120,17 @@ const contains = function (x, y, domrect) {
          domrect.y <= y && y <= domrect.y + domrect.height;
 }
 
+function color(value, maxLength)
+{
+    var i = (value * 255 / maxLength);
+    // var r = Math.round(Math.sin(0.024 * i + 0) * 127 + 128);
+    var r = 0;
+    var g = Math.round(Math.sin(0.024 * i + 2) * 127 + 128);
+    // var b = Math.round(Math.sin(0.024 * i + 4) * 127 + 128);
+    var b = 0;
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
 // Get restaurant button element coordinates
 var startResRect = startRes.getBoundingClientRect();
 // Get study button element coordinates
@@ -132,8 +143,6 @@ var startExploreRect = startExplore.getBoundingClientRect();
 var homeRect = home.getBoundingClientRect();
 // Group rectangles into a dictionary
 var rects = { startRes: startResRect, startStudy: startStudyRect, startHobbies: startHobbiesRect, startExplore: startExploreRect, home: homeRect };
-
-console.log(startResRect);
 
 function sendWristCommand(command) {
   if (command === null) {
@@ -191,6 +200,9 @@ function sendWristCommand(command) {
       else {
         hover_counts[key] = 0;
       }
+
+      // change button color with hover_counts
+      buttons[key].style.backgroundColor = color(hover_counts[key], hover_threshold);
     }
   }
 }
