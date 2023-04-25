@@ -51,6 +51,17 @@ html, body {
   width: 130px;
 }
 
+#home-button {
+  border-radius: 50%;
+  background-color: #6a7885;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  left:    0;
+  bottom:   0;
+}
+
+
 #instruct-container {
   background-color: #8C8D8F;
   padding-top: 25px;

@@ -1,10 +1,9 @@
 // Adapted from https://p5js.org/examples/interaction-snake-game.html
 //
-var host = "localhost:8000";
-// $(document).ready(function() {
-//   frames.start();
-//   twod.start();
-// });
+var host = "cpsc484-04.yale.internal:8888";
+$(document).ready(function() {
+  frames.start();
+});
 
 // var frames = {
 //   socket: null,
@@ -123,31 +122,67 @@ let downArrow = document.getElementById('down-arrow');
 
 let startButton = document.getElementById('start-button');
 startButton.addEventListener("click", () => {
-  window.location.href = 'prompt.html';
+  document.location.href = 'prompt.html';
   
 });
 
+// button for restaurants
+let startRes = document.getElementById('restaurant-button');
+startRes.addEventListener("click", () => {
+  document.location.href = 'restaurantmap.html';
+  
+});
 
+// button for study places
+let startStudy = document.getElementById('study-button');
+startStudy.addEventListener("click", () => {
+  document.location.href = 'studymap.html';
+  
+});
 
-// function setup() {
-//   let snakeCanvas = createCanvas(windowWidth/2, windowHeight/2);
-//   snakeCanvas.parent("canvas-container");
-//   frameRate(3);
-//   stroke(255);
-//   strokeWeight(10);
-//   updateFruitCoordinates();
+// button for hobbies
+let startHobbies = document.getElementById('hobbies-button');
+startHobbies.addEventListener("click", () => {
+  document.location.href = 'hobbiesmap.html';
+  
+});
 
-//   scoreElem = createDiv('Score = 0');
-//   scoreElem.parent("score-container");
-//   scoreElem.id = 'score';
+// button for places to explore
+let startExplore = document.getElementById('explore-button');
+startExplore.addEventListener("click", () => {
+  document.location.href = 'exploremap.html';
+  
+});
 
-//   for (let i = 0; i < numSegments; i++) {
-//     xCor.push(xStart + i * diff);
-//     yCor.push(yStart);
-//   }
-// }
+function setup() {
+  let snakeCanvas = createCanvas(windowWidth/2, windowHeight/2);
+  snakeCanvas.parent("canvas-container");
+  frameRate(3);
+  stroke(255);
+  strokeWeight(10);
+  updateFruitCoordinates();
 
+  scoreElem = createDiv('Score = 0');
+  scoreElem.parent("score-container");
+  scoreElem.id = 'score';
 
+  for (let i = 0; i < numSegments; i++) {
+    xCor.push(xStart + i * diff);
+    yCor.push(yStart);
+  }
+}
+
+function draw() {
+  background('#b1d1fc');
+  for (let i = 0; i < numSegments - 1; i++) {
+    line(xCor[i], yCor[i], xCor[i + 1], yCor[i + 1]);
+    stroke('#FFFFFF');
+  }
+  updateSnakeCoordinates();
+  updateHandContainer();
+  checkGameStatus();
+  checkForFruit();
+}
 
 /*
  The segments are updated based on the direction of the snake.
@@ -207,6 +242,66 @@ function updateHandContainer() {
   }
 }
 
+/*
+ I always check the snake's head position xCor[xCor.length - 1] and
+ yCor[yCor.length - 1] to see if it touches the game's boundaries
+ or if the snake hits itself.
+*/
+function checkGameStatus() {
+  if (
+    xCor[xCor.length - 1] > width ||
+    xCor[xCor.length - 1] < 0 ||
+    yCor[yCor.length - 1] > height ||
+    yCor[yCor.length - 1] < 0 ||
+    checkSnakeCollision()
+  ) {
+    noLoop();
+    const scoreVal = parseInt(scoreElem.html().substring(8));
+    scoreElem.html('Game ended! Your score was : ' + scoreVal);
+  }
+}
+
+/*
+ If the snake hits itself, that means the snake head's (x,y) coordinate
+ has to be the same as one of its own segment's (x,y) coordinate.
+*/
+function checkSnakeCollision() {
+  const snakeHeadX = xCor[xCor.length - 1];
+  const snakeHeadY = yCor[yCor.length - 1];
+  for (let i = 0; i < xCor.length - 1; i++) {
+    if (xCor[i] === snakeHeadX && yCor[i] === snakeHeadY) {
+      return true;
+    }
+  }
+}
+
+/*
+ Whenever the snake consumes a fruit, I increment the number of segments,
+ and just insert the tail segment again at the start of the array (basically
+ I add the last segment again at the tail, thereby extending the tail)
+*/
+function checkForFruit() {
+  point(xFruit, yFruit);
+  if (xCor[xCor.length - 1] === xFruit && yCor[yCor.length - 1] === yFruit) {
+    const prevScore = parseInt(scoreElem.html().substring(8));
+    scoreElem.html('Score = ' + (prevScore + 1));
+    xCor.unshift(xCor[0]);
+    yCor.unshift(yCor[0]);
+    numSegments++;
+    updateFruitCoordinates();
+  }
+}
+
+function updateFruitCoordinates() {
+  /*
+    The complex math logic is because I wanted the point to lie
+    in between 100 and width-100, and be rounded off to the nearest
+    number divisible by 10, since I move the snake in multiples of 10.
+  */
+
+  xFruit = floor(random(10, (width - 100) / 10)) * 10;
+  yFruit = floor(random(10, (height - 100) / 10)) * 10;
+}
 
 function sendWristCommand(command) {
   switch (command) {
@@ -233,40 +328,3 @@ function sendWristCommand(command) {
   }
   console.log(direction);
 }
-
-
-// scroll implementation: https://www.delftstack.com/howto/javascript/auto-scroll-javascript/ 
-// we can change later so we dont get called for plagiarism lmao
-
-let scrollerID;
-let paused = true;
-let interval = 10;
-
-function startScroll(){
-    let id = setInterval(function() {
-        window.scrollBy(0, 2);
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            // end of page?
-            stopScroll();
-        }
-    }, interval);
-    return id;
-}
-
-function stopScroll() {
-    clearInterval(scrollerID);
-}
-document.body.addEventListener('keypress', function (event)
-{
-    if (event.which == 13 || event.keyCode == 13) {
-        // 'Enter' key
-        if(paused == true) {
-            scrollerID = startScroll();
-            paused = false;
-        }
-        else {
-            stopScroll();
-            paused = true;
-        }
-    }
-}, true);
