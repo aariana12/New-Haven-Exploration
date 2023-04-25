@@ -2,22 +2,22 @@
 
 var host = "cpsc484-04.yale.internal:8888";
 
-$(document).ready(function () {
-    frames.start();
-});
+// $(document).ready(function () {
+//     frames.start();
+// });
 
-var frames = {
-    socket: null,
+// var frames = {
+//     socket: null,
 
-    start: function () {
-        var url = "ws://" + host + "/frames";
-        frames.socket = new WebSocket(url);
-        frames.socket.onmessage = function (event) {
-            frames.show(JSON.parse(event.data));
-        }
-    },
+//     start: function () {
+//         var url = "ws://" + host + "/frames";
+//         frames.socket = new WebSocket(url);
+//         frames.socket.onmessage = function (event) {
+//             frames.show(JSON.parse(event.data));
+//         }
+//     },
 
-    show: function (frame) {
-        console.log(frame);
-    }
-};
+//     show: function (frame) {
+//         console.log(frame);
+//     }
+// };

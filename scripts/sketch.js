@@ -5,70 +5,70 @@ $(document).ready(function() {
   frames.start();
 });
 
-var frames = {
-  socket: null,
+// var frames = {
+//   socket: null,
 
-  start: function() {
-    var url = "ws://" + host + "/frames";
-    frames.socket = new WebSocket(url);
-    frames.socket.onmessage = function (event) {
-      var command = frames.get_left_wrist_command(JSON.parse(event.data));
-      if (command !== null) {
-        sendWristCommand(command);
-      }
-    }
-  },
+//   start: function() {
+//     var url = "ws://" + host + "/frames";
+//     frames.socket = new WebSocket(url);
+//     frames.socket.onmessage = function (event) {
+//       var command = frames.get_left_wrist_command(JSON.parse(event.data));
+//       if (command !== null) {
+//         sendWristCommand(command);
+//       }
+//     }
+//   },
 
-  get_left_wrist_command: function (frame) {
-    var command = null;
-    if (frame.people.length < 1) {
-      return command;
-    }
+//   get_left_wrist_command: function (frame) {
+//     var command = null;
+//     if (frame.people.length < 1) {
+//       return command;
+//     }
 
-    // Normalize by subtracting the root (pelvis) joint coordinates
-    var pelvis_x = frame.people[0].joints[0].position.x;
-    var pelvis_y = frame.people[0].joints[0].position.y;
-    var pelvis_z = frame.people[0].joints[0].position.z;
-    var left_wrist_x = (frame.people[0].joints[7].position.x - pelvis_x) * -1;
-    var left_wrist_y = (frame.people[0].joints[7].position.y - pelvis_y) * -1;
-    var left_wrist_z = (frame.people[0].joints[7].position.z - pelvis_z) * -1;
+//     // Normalize by subtracting the root (pelvis) joint coordinates
+//     var pelvis_x = frame.people[0].joints[0].position.x;
+//     var pelvis_y = frame.people[0].joints[0].position.y;
+//     var pelvis_z = frame.people[0].joints[0].position.z;
+//     var left_wrist_x = (frame.people[0].joints[7].position.x - pelvis_x) * -1;
+//     var left_wrist_y = (frame.people[0].joints[7].position.y - pelvis_y) * -1;
+//     var left_wrist_z = (frame.people[0].joints[7].position.z - pelvis_z) * -1;
 
-    if (left_wrist_z < 100) {
-      return command;
-    }
+//     if (left_wrist_z < 100) {
+//       return command;
+//     }
 
-    if (left_wrist_x < 200 && left_wrist_x > -200) {
-      if (left_wrist_y > 500) {
-        command = 73; // UP
-      } else if (left_wrist_y < 100) {
-        command = 75; // DOWN
-      }
-    } else if (left_wrist_y < 500 && left_wrist_y > 100) {
-      if (left_wrist_x > 200) {
-        command = 76; // RIGHT
-      } else if (left_wrist_x < -200) {
-        command = 74; // LEFT
-      }
-    }
-    return command;
-  }
-};
+//     if (left_wrist_x < 200 && left_wrist_x > -200) {
+//       if (left_wrist_y > 500) {
+//         command = 73; // UP
+//       } else if (left_wrist_y < 100) {
+//         command = 75; // DOWN
+//       }
+//     } else if (left_wrist_y < 500 && left_wrist_y > 100) {
+//       if (left_wrist_x > 200) {
+//         command = 76; // RIGHT
+//       } else if (left_wrist_x < -200) {
+//         command = 74; // LEFT
+//       }
+//     }
+//     return command;
+//   }
+// };
 
-var twod = {
-  socket: null,
+// var twod = {
+//   socket: null,
 
-  start: function() {
-    var url = "ws://" + host + "/twod";
-    twod.socket = new WebSocket(url);
-    twod.socket.onmessage = function(event) {
-      twod.show(JSON.parse(event.data));
-    }
-  },
+//   start: function() {
+//     var url = "ws://" + host + "/twod";
+//     twod.socket = new WebSocket(url);
+//     twod.socket.onmessage = function(event) {
+//       twod.show(JSON.parse(event.data));
+//     }
+//   },
 
-  show: function(twod) {
-    $('.twod').attr("src", 'data:image/pnjpegg;base64,'+twod.src);
-  }
-};
+//   show: function(twod) {
+//     $('.twod').attr("src", 'data:image/pnjpegg;base64,'+twod.src);
+//   }
+// };
 // the snake is divided into small segments, which are drawn and edited on each 'draw' call
 let numSegments = 10;
 let direction = 'right';
@@ -91,9 +91,67 @@ let rightArrow = document.getElementById('right-arrow');
 let upArrow = document.getElementById('up-arrow');
 let downArrow = document.getElementById('down-arrow');
 
+// // button for restaurants
+// let startRes = document.getElementById('restaurant-button');
+// startRes.addEventListener("click", () => {
+//   window.location.href = 'maps/index.html';
+  
+// });
+
+// // button for study places
+// let startStudy = document.getElementById('study-button');
+// startStudy.addEventListener("click", () => {
+//   window.location.href = '/maps/index.html';
+//   //rename dist map/
+  
+// });
+
+// // button for hobbies
+// let startHobbies = document.getElementById('hobbies-button');
+// startHobbies.addEventListener("click", () => {
+//   window.location.href = '/maps/index.html';
+  
+// });
+
+// // button for places to explore
+// let startExplore = document.getElementById('explore-button');
+// startExplore.addEventListener("click", () => {
+//   window.location.href = '/maps/index.html';
+  
+// });
+
 let startButton = document.getElementById('start-button');
 startButton.addEventListener("click", () => {
-  window.location.reload();
+  document.location.href = 'prompt.html';
+  
+});
+
+// button for restaurants
+let startRes = document.getElementById('restaurant-button');
+startRes.addEventListener("click", () => {
+  document.location.href = 'restaurantmap.html';
+  
+});
+
+// button for study places
+let startStudy = document.getElementById('study-button');
+startStudy.addEventListener("click", () => {
+  document.location.href = 'studymap.html';
+  
+});
+
+// button for hobbies
+let startHobbies = document.getElementById('hobbies-button');
+startHobbies.addEventListener("click", () => {
+  document.location.href = 'hobbiesmap.html';
+  
+});
+
+// button for places to explore
+let startExplore = document.getElementById('explore-button');
+startExplore.addEventListener("click", () => {
+  document.location.href = 'exploremap.html';
+  
 });
 
 function setup() {
@@ -136,30 +194,30 @@ function draw() {
  predefined value 'diff' than its second to last segment. And if it's going up
  or down, the segment's y coordinate is affected.
 */
-function updateSnakeCoordinates() {
-  for (let i = 0; i < numSegments - 1; i++) {
-    xCor[i] = xCor[i + 1];
-    yCor[i] = yCor[i + 1];
-  }
-  switch (direction) {
-    case 'right':
-      xCor[numSegments - 1] = xCor[numSegments - 2] + diff;
-      yCor[numSegments - 1] = yCor[numSegments - 2];
-      break;
-    case 'up':
-      xCor[numSegments - 1] = xCor[numSegments - 2];
-      yCor[numSegments - 1] = yCor[numSegments - 2] - diff;
-      break;
-    case 'left':
-      xCor[numSegments - 1] = xCor[numSegments - 2] - diff;
-      yCor[numSegments - 1] = yCor[numSegments - 2];
-      break;
-    case 'down':
-      xCor[numSegments - 1] = xCor[numSegments - 2];
-      yCor[numSegments - 1] = yCor[numSegments - 2] + diff;
-      break;
-  }
-}
+// function updateSnakeCoordinates() {
+//   for (let i = 0; i < numSegments - 1; i++) {
+//     xCor[i] = xCor[i + 1];
+//     yCor[i] = yCor[i + 1];
+//   }
+//   switch (direction) {
+//     case 'right':
+//       xCor[numSegments - 1] = xCor[numSegments - 2] + diff;
+//       yCor[numSegments - 1] = yCor[numSegments - 2];
+//       break;
+//     case 'up':
+//       xCor[numSegments - 1] = xCor[numSegments - 2];
+//       yCor[numSegments - 1] = yCor[numSegments - 2] - diff;
+//       break;
+//     case 'left':
+//       xCor[numSegments - 1] = xCor[numSegments - 2] - diff;
+//       yCor[numSegments - 1] = yCor[numSegments - 2];
+//       break;
+//     case 'down':
+//       xCor[numSegments - 1] = xCor[numSegments - 2];
+//       yCor[numSegments - 1] = yCor[numSegments - 2] + diff;
+//       break;
+//   }
+// }
 
 function updateHandContainer() {
   // set all arrows to white
