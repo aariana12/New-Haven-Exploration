@@ -1,11 +1,13 @@
 // Adapted from https://p5js.org/examples/interaction-snake-game.html
 //
+
 var host = "cpsc484-04.yale.internal:8888";
+
 $(document).ready(function() {
   frames.start();
 });
 
-let startButton = document.getElementById('start-button');
+const startButton = document.getElementById('start-button');
 startButton.addEventListener("click", () => {
   document.location.href = 'prompt.html';
 });
@@ -78,9 +80,20 @@ const mean = array => array.reduce((a, b) => a + b) / array.length;
 
 const cursor = document.getElementById("cursor");
 const coords = document.getElementById("coords");
+const hover = document.getElementById("hover");
 let cursor_x = [];
 let cursor_y = [];
 const buffer_length = 5;
+let hover_count = 0;
+const hover_threshold = 15;
+
+const contains = function (x, y, domrect) {
+  return domrect.x <= x && x <= domrect.x + domrect.width &&
+         domrect.y <= y && y <= domrect.y + domrect.height;
+}
+
+// Get start button element coordinates
+var startButtonRect = startButton.getBoundingClientRect();
 
 function sendWristCommand(command) {
   if (command === null) {
@@ -111,7 +124,7 @@ function sendWristCommand(command) {
       cursor_y.push(command.display_y);
     }
 
-    console.log(`left wrist avg: ${mean(cursor_x)}, ${1080-mean(cursor_y)}`);
+    // console.log(`left wrist avg: ${mean(cursor_x)}, ${1080-mean(cursor_y)}`);
 
     cursor.style.left = mean(cursor_x) + "px";
     cursor.style.top = (1080-mean(cursor_y)) + "px";
@@ -120,6 +133,23 @@ function sendWristCommand(command) {
     // change color
     coords.style.color = "white";
     // increase font size
-    coords.style.fontSize = "50px";
+    coords.style.fontSize = "20px";
+
+    hover.innerHTML = `hover: ${hover_count}`;
+    // change color
+    hover.style.color = "white";
+    // increase font size
+    hover.style.fontSize = "20px";
+
+    if (contains(mean(cursor_x), 1080-mean(cursor_y), startButtonRect)) {
+      hover_count++;
+      if (hover_count === hover_threshold) {
+        startButton.click();
+      }
+    }
+    else {
+      hover_count = 0;
+    }
   }
 }
+
