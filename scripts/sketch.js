@@ -52,8 +52,8 @@ var frames = {
 
     // var display_x = left_wrist_x;
     // var display_y = left_wrist_y;
-    var display_x = scale(left_wrist_x, -650, 400, 0, 1920);
-    var display_y = scale(left_wrist_y, -100, 900, 0, 1080);
+    var display_x = scale(left_wrist_x, -650, 400, 0, window.innerWidth);
+    var display_y = scale(left_wrist_y, -100, 900, 0, window.innerHeight);
     
 
     return {display_x, display_y};
@@ -124,12 +124,12 @@ function sendWristCommand(command) {
       cursor_y.push(command.display_y);
     }
 
-    // console.log(`left wrist avg: ${mean(cursor_x)}, ${1080-mean(cursor_y)}`);
+    // console.log(`left wrist avg: ${mean(cursor_x)}, ${window.innerHeight-mean(cursor_y)}`);
 
     cursor.style.left = mean(cursor_x) + "px";
-    cursor.style.top = (1080-mean(cursor_y)) + "px";
+    cursor.style.top = (window.innerHeight-mean(cursor_y)) + "px";
 
-    coords.innerHTML = `(${mean(cursor_x)}, ${1080-mean(cursor_y)})`;
+    coords.innerHTML = `(${mean(cursor_x)}, ${window.innerHeight-mean(cursor_y)})`;
     // change color
     coords.style.color = "white";
     // increase font size
@@ -141,7 +141,7 @@ function sendWristCommand(command) {
     // increase font size
     hover.style.fontSize = "20px";
 
-    if (contains(mean(cursor_x), 1080-mean(cursor_y), startButtonRect)) {
+    if (contains(mean(cursor_x), window.innerHeight-mean(cursor_y), startButtonRect)) {
       hover_count++;
       if (hover_count === hover_threshold) {
         startButton.click();
