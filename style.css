@@ -54,9 +54,17 @@ html, body {
   background-color: #6a7885;
   height: 50px;
   width: 50px;
-  position: absolute;
-  left:    0;
-  bottom:   0;
+  position: fixed;
+  left:    25px;
+}
+
+#exit-button {
+  border-radius: 50%;
+  background-color: #6a7885;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right:    25px;
 }
 
 #canvas-container {
