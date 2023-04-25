@@ -2,14 +2,14 @@ var host = "localhost:8000";
 // button for restaurants
 let startRes = document.getElementById('restaurant-button');
 startRes.addEventListener("click", () => {
-  window.location.href = 'maps/index.html';
+  document.location.href = 'maps/index.html';
   
 });
 
 // button for study places
 let startStudy = document.getElementById('study-button');
 startStudy.addEventListener("click", () => {
-  window.location.href = '/maps/index.html';
+  document.location.href = 'maps/index.html';
   //rename dist map/
   
 });
@@ -17,13 +17,20 @@ startStudy.addEventListener("click", () => {
 // button for hobbies
 let startHobbies = document.getElementById('hobbies-button');
 startHobbies.addEventListener("click", () => {
-  window.location.href = '/maps/index.html';
+  document.location.href = 'maps/index.html';
   
 });
 
 // button for places to explore
 let startExplore = document.getElementById('explore-button');
 startExplore.addEventListener("click", () => {
-  window.location.href = "http://localhost:8000";
+  document.location.href = "maps/index.html";
+  
+});
+
+// button for home
+let home = document.getElementById('home-button');
+home.addEventListener("click", () => {
+  document.location.href = 'index.html';
   
 });
